@@ -7,7 +7,8 @@ body{
 
 h1{
     text-align:center;
-    font-size:48px;
+    font-size:54px;
+    font-weight:800;
     margin:20px 0;
 }
 
@@ -30,28 +31,45 @@ h1{
     border:1px solid #1c4e89;
     border-radius:12px;
     margin-bottom:12px;
-    padding:15px;
+    padding:20px;
+    min-height:130px;
 }
 
 .juego{
     width:25%;
-    font-size:24px;
-    font-weight:bold;
+    font-size:30px;
+    font-weight:800;
 }
 
-.resultado {
-    font-size: 36px; /* Tamaño grande */
-    font-weight: bold; /* Negrita */
-    color: white; /* Números principales en blanco */
-    text-align: center;
-    margin: 10px 0;
+.resultado{
+    width:50%;
+    text-align:center;
+    font-size:38px;
+    font-weight:800;
+    color:white;
+    letter-spacing:2px;
+    line-height:1.5;
 }
 
-.complementario, .reintegro {
-    font-size: 24px; /* Un poco más pequeño */
-    color: #c0c0c0; /* Gris suave */
-    display: block;
-    margin-top: 5px;
+.complementario{
+    color:#4CAF50;
+    font-size:28px;
+    font-weight:700;
+}
+
+.reintegro{
+    color:#FF9800;
+    font-size:28px;
+    font-weight:700;
+}
+
+.bote{
+    width:25%;
+    text-align:right;
+    color:#FFD700;
+    font-size:40px;
+    font-weight:900;
+    text-shadow:0 0 10px rgba(255,215,0,0.5);
 }
 
 .euromillones{
@@ -61,6 +79,6 @@ h1{
 .footer{
     text-align:center;
     color:#bdbdbd;
-    font-size:14px;
+    font-size:16px;
     margin:20px 0;
 }
