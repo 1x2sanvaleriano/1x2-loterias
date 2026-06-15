@@ -12,12 +12,6 @@ font-weight:800;
 margin:20px 0;
 }
 
-.subtitulo{
-text-align:center;
-color:#c0c0c0;
-margin-bottom:20px;
-}
-
 .contenedor{
 width:95%;
 margin:auto;
@@ -34,39 +28,37 @@ min-height:130px;
 border:1px solid rgba(255,255,255,0.15);
 }
 
-/* COLORES DE JUEGOS */
-
 .primitiva{
-background:rgba(0,128,0,0.50);
+background:rgba(0,180,0,0.65);
 }
 
 .bonoloto{
-background:rgba(220,0,0,0.50);
+background:rgba(220,0,0,0.65);
 }
 
 .euromillones{
-background:rgba(70,0,120,0.50);
+background:rgba(90,0,160,0.65);
 border:2px solid #d4af37;
 }
 
 .eurodreams{
-background:rgba(180,120,255,0.50);
+background:rgba(180,120,255,0.65);
 }
 
 .gordo{
-background:rgba(180,0,0,0.50);
+background:rgba(255,40,40,0.65);
 }
 
 .quiniela{
-background:rgba(100,100,100,0.50);
+background:rgba(100,100,100,0.65);
 }
 
 .quinigol{
-background:rgba(120,120,120,0.50);
+background:rgba(130,130,130,0.65);
 }
 
 .nacional{
-background:rgba(0,90,180,0.50);
+background:rgba(0,120,255,0.65);
 }
 
 .juego{
