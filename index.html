@@ -1,4 +1,130 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1X2 Loterías</title><link rel="stylesheet" href="style.css"></head><body><h1>ÚLTIMOS RESULTADOS Y BOTES</h1><div class="contenedor" id="contenedor">
+</div><div class="footer">
++18 · JUEGA CON RESPONSABILIDAD
+</div><script>
+
+fetch('datos.json')
+.then(response => response.json())
+.then(data => {
+
+const contenedor = document.getElementById('contenedor');
+
+contenedor.innerHTML = `
+
+<div class="tarjeta">
+<div class="juego">PRIMITIVA</div>
+<div class="resultado">
+${data.primitiva.numeros}
+<br>
+<span class="complementario">
+C: ${data.primitiva.complementario}
+</span>
+&nbsp;&nbsp;&nbsp;
+<span class="reintegro">
+R: ${data.primitiva.reintegro}
+</span>
+</div>
+<div class="bote">${data.primitiva.bote}</div>
+</div>
+
+<div class="tarjeta">
+<div class="juego">BONOLOTO</div>
+<div class="resultado">
+${data.bonoloto.numeros}
+<br>
+<span class="complementario">
+C: ${data.bonoloto.complementario}
+</span>
+&nbsp;&nbsp;&nbsp;
+<span class="reintegro">
+R: ${data.bonoloto.reintegro}
+</span>
+</div>
+<div class="bote">${data.bonoloto.bote}</div>
+</div>
+
+<div class="tarjeta euromillones">
+<div class="juego">EUROMILLONES</div>
+<div class="resultado">
+${data.euromillones.numeros}
+<br>
+<span style="color:#FFD700;">
+⭐ ${data.euromillones.estrellas}
+</span>
+</div>
+<div class="bote">${data.euromillones.bote}</div>
+</div>
+
+<div class="tarjeta">
+<div class="juego">EURODREAMS</div>
+<div class="resultado">
+${data.eurodreams.numeros}
+<br>
+Sueño: ${data.eurodreams.sueno}
+</div>
+<div class="bote">${data.eurodreams.premio}</div>
+</div>
+
+<div class="tarjeta">
+<div class="juego">GORDO</div>
+<div class="resultado">
+${data.gordo.numeros}
+<br>
+Clave: ${data.gordo.clave}
+</div>
+<div class="bote">${data.gordo.bote}</div>
+</div>
+
+<div class="tarjeta">
+<div class="juego">QUINIELA</div>
+<div class="resultado">
+${data.quiniela.resultado}
+</div>
+<div class="bote">${data.quiniela.bote}</div>
+</div>
+
+<div class="tarjeta">
+<div class="juego">QUINIGOL</div>
+<div class="resultado">
+${data.quinigol.resultado}
+</div>
+<div class="bote">${data.quinigol.bote}</div>
+</div>
+
+<div class="tarjeta">
+<div class="juego">NACIONAL JUEVES</div>
+<div class="resultado">
+1º ${data.jueves.primero}
+<br>
+<span class="reintegro">
+R: ${data.jueves.reintegros}
+</span>
+</div>
+<div class="bote"></div>
+</div>
+
+<div class="tarjeta">
+<div class="juego">NACIONAL SÁBADO</div>
+<div class="resultado">
+1º ${data.sabado.primero}
+<br>
+<span class="reintegro">
+R: ${data.sabado.reintegros}
+</span>
+</div>
+<div class="bote"></div>
+</div>
+
+`;
+
+});
+
+</script></body>
+</html> html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
