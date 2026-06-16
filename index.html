@@ -17,109 +17,130 @@ const contenedor = document.getElementById('contenedor');
 contenedor.innerHTML = `
 
 <div class="tarjeta primitiva">
-<div class="juego">PRIMITIVA</div>
-<div class="resultado">
-${data.primitiva.numeros}
-<br>
-<span class="complementario">C: ${data.primitiva.complementario}</span>
-&nbsp;&nbsp;&nbsp;
-<span class="reintegro">R: ${data.primitiva.reintegro}</span>
-</div>
+<div class="cabecera"></div>
 <div class="bote">${data.primitiva.bote}</div>
+<div class="cuerpo">
+<div class="resultado">
+${data.primitiva.numeros.replaceAll(' ',' - ')}
+<br>
+<span class="complementario">
+C: ${data.primitiva.complementario}
+</span>
+&nbsp;&nbsp;
+<span class="reintegro">
+R: ${data.primitiva.reintegro}
+</span>
+</div>
+</div>
 </div>
 
 <div class="tarjeta bonoloto">
-<div class="juego">BONOLOTO</div>
-<div class="resultado">
-${data.bonoloto.numeros}
-<br>
-<span class="complementario">C: ${data.bonoloto.complementario}</span>
-&nbsp;&nbsp;&nbsp;
-<span class="reintegro">R: ${data.bonoloto.reintegro}</span>
-</div>
+<div class="cabecera"></div>
 <div class="bote">${data.bonoloto.bote}</div>
+<div class="cuerpo">
+<div class="resultado">
+${data.bonoloto.numeros.replaceAll(' ',' - ')}
+<br>
+<span class="complementario">
+C: ${data.bonoloto.complementario}
+</span>
+&nbsp;&nbsp;
+<span class="reintegro">
+R: ${data.bonoloto.reintegro}
+</span>
+</div>
+</div>
 </div>
 
 <div class="tarjeta euromillones">
-<div class="juego">EUROMILLONES</div>
-<div class="resultado">
-${data.euromillones.numeros}
-<br>
-<span style="color:#FFD700;">⭐ ${data.euromillones.estrellas}</span>
-</div>
+<div class="cabecera"></div>
 <div class="bote">${data.euromillones.bote}</div>
+<div class="cuerpo">
+<div class="resultado">
+${data.euromillones.numeros.replaceAll(' ',' - ')}
+<br>
+⭐ ${data.euromillones.estrellas}
+</div>
+</div>
 </div>
 
 <div class="tarjeta eurodreams">
-<div class="juego">EURODREAMS</div>
+<div class="cabecera"></div>
+<div class="bote">${data.eurodreams.premio}</div>
+<div class="cuerpo">
 <div class="resultado">
-${data.eurodreams.numeros}
+${data.eurodreams.numeros.replaceAll(' ',' - ')}
 <br>
 Sueño: ${data.eurodreams.sueno}
 </div>
-<div class="bote">${data.eurodreams.premio}</div>
+</div>
 </div>
 
 <div class="tarjeta gordo">
-<div class="juego">GORDO</div>
+<div class="cabecera"></div>
+<div class="bote">${data.gordo.bote}</div>
+<div class="cuerpo">
 <div class="resultado">
-${data.gordo.numeros}
+${data.gordo.numeros.replaceAll(' ',' - ')}
 <br>
 Clave: ${data.gordo.clave}
 </div>
-<div class="bote">${data.gordo.bote}</div>
+</div>
 </div>
 
 <div class="tarjeta quiniela">
-<div class="juego">QUINIELA</div>
+<div class="cabecera"></div>
+<div class="bote">${data.quiniela.bote}</div>
+<div class="cuerpo">
 <div class="resultado">
 ${data.quiniela.resultado}
 </div>
-<div class="bote">${data.quiniela.bote}</div>
+</div>
 </div>
 
 <div class="tarjeta quinigol">
-<div class="juego">QUINIGOL</div>
+<div class="cabecera"></div>
+<div class="bote">${data.quinigol.bote}</div>
+<div class="cuerpo">
 <div class="resultado">
 ${data.quinigol.resultado}
 </div>
-<div class="bote">${data.quinigol.bote}</div>
+</div>
 </div>
 
 <div class="tarjeta nacional">
-<div class="juego">NACIONAL JUEVES</div>
-
-<div class="resultado">
-1º ${data.jueves.primero}
-<br>
-<span style="font-size:28px;">
-2º ${data.jueves.segundo}
-</span>
-</div>
-
+<div class="cabecera"></div>
 <div class="bote">
 R: ${data.jueves.reintegros}
 </div>
+<div class="cuerpo">
+<div class="resultado">
+1º ${data.jueves.primero}
+<br>
+<span class="segundo">
+2º ${data.jueves.segundo}
+</span>
+</div>
+</div>
 </div>
 
 <div class="tarjeta nacional">
-<div class="juego">NACIONAL SÁBADO</div>
-
+<div class="cabecera"></div>
+<div class="bote">
+R: ${data.sabado.reintegros}
+</div>
+<div class="cuerpo">
 <div class="resultado">
 1º ${data.sabado.primero}
 <br>
-<span style="font-size:28px;">
+<span class="segundo">
 2º ${data.sabado.segundo}
 </span>
 </div>
-
-<div class="bote">
-R: ${data.sabado.reintegros}
 </div>
 </div>
 
 `;
-
 });
 
 </script></body>
