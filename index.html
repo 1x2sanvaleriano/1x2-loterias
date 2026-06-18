@@ -1,9 +1,10 @@
-
 <!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1X2 Loterías</title><link rel="stylesheet" href="style.css"></head><body><h1>ÚLTIMOS RESULTADOS Y BOTES</h1><div class="contenedor" id="contenedor"></div><div class="footer">
+<title>1X2 Loterías</title>
+<link rel="stylesheet" href="style.css">
+</head><body><h1>ÚLTIMOS RESULTADOS Y BOTES</h1><div class="contenedor" id="contenedor"></div><div class="footer">
 +18 · JUEGA CON RESPONSABILIDAD
 </div><script>
 
@@ -16,211 +17,121 @@ const contenedor = document.getElementById('contenedor');
 contenedor.innerHTML = `
 
 <div class="tarjeta primitiva">
-
 <div class="cabecera">
 <img src="img/primitiva-png.png" class="logo">
 </div>
-
 <div class="contenido">
 <div class="resultado">
 ${data.primitiva.numeros.replaceAll(' ',' - ')}
 <br>
-<span class="complementario">
-C: ${data.primitiva.complementario}
-</span>
+<span class="complementario">C: ${data.primitiva.complementario}</span>
 &nbsp;&nbsp;
-<span class="reintegro">
-R: ${data.primitiva.reintegro}
-</span>
+<span class="reintegro">R: ${data.primitiva.reintegro}</span>
 </div>
-
-<div class="bote">
-${data.primitiva.bote}
+<div class="bote">${data.primitiva.bote}</div>
 </div>
 </div>
-
-</div>
-
 
 <div class="tarjeta bonoloto">
-
 <div class="cabecera">
 <img src="img/bonoloto-png.png" class="logo">
 </div>
-
 <div class="contenido">
 <div class="resultado">
 ${data.bonoloto.numeros.replaceAll(' ',' - ')}
 <br>
-<span class="complementario">
-C: ${data.bonoloto.complementario}
-</span>
+<span class="complementario">C: ${data.bonoloto.complementario}</span>
 &nbsp;&nbsp;
-<span class="reintegro">
-R: ${data.bonoloto.reintegro}
-</span>
+<span class="reintegro">R: ${data.bonoloto.reintegro}</span>
 </div>
-
-<div class="bote">
-${data.bonoloto.bote}
+<div class="bote">${data.bonoloto.bote}</div>
 </div>
 </div>
-
-</div>
-
 
 <div class="tarjeta euromillones">
-
 <div class="cabecera">
 <img src="img/euromillones-png.png" class="logo">
 </div>
-
 <div class="contenido">
 <div class="resultado">
 ${data.euromillones.numeros.replaceAll(' ',' - ')}
 <br>
 ⭐ ${data.euromillones.estrellas}
 </div>
-
-<div class="bote">
-${data.euromillones.bote}
+<div class="bote">${data.euromillones.bote}</div>
 </div>
 </div>
-
-</div>
-
 
 <div class="tarjeta eurodreams">
-
 <div class="cabecera">
 <img src="img/eurodreams-png.png" class="logo">
 </div>
-
 <div class="contenido">
 <div class="resultado">
 ${data.eurodreams.numeros.replaceAll(' ',' - ')}
 <br>
 Sueño: ${data.eurodreams.sueno}
 </div>
-
-<div class="bote">
-${data.eurodreams.premio}
+<div class="bote">${data.eurodreams.premio}</div>
 </div>
 </div>
-
-</div>
-
 
 <div class="tarjeta gordo">
-
 <div class="cabecera">
 <img src="img/gordo-png.png" class="logo">
 </div>
-
 <div class="contenido">
 <div class="resultado">
 ${data.gordo.numeros.replaceAll(' ',' - ')}
 <br>
 Clave: ${data.gordo.clave}
 </div>
-
-<div class="bote">
-${data.gordo.bote}
+<div class="bote">${data.gordo.bote}</div>
 </div>
 </div>
-
-</div>
-
 
 <div class="tarjeta quiniela">
-
 <div class="cabecera">
 <img src="img/quiniela-png.png" class="logo">
 </div>
-
 <div class="contenido">
 <div class="resultado">
 ${data.quiniela.resultado}
 </div>
-
-<div class="bote">
-${data.quiniela.bote}
+<div class="bote">${data.quiniela.bote}</div>
 </div>
 </div>
-
-</div>
-
 
 <div class="tarjeta quinigol">
-
 <div class="cabecera">
 <img src="img/quinigol-png.png" class="logo">
 </div>
-
 <div class="contenido">
 <div class="resultado">
 ${data.quinigol.resultado}
 </div>
-
-<div class="bote">
-${data.quinigol.bote}
+<div class="bote">${data.quinigol.bote}</div>
 </div>
 </div>
-
-</div>
-
 
 <div class="tarjeta nacional">
 
 <div class="cabecera">
-<img src="img/loterianacional-png.png" class="logo">
+<img src="img/loterianacional-png.png" class="logo logo-nacional">
 </div>
 
-<div class="contenido">
+<div class="contenido-nacional">
 
-<div class="resultado">
-JUEVES
-<br>
-1º ${data.jueves.primero}
-<br>
-<span class="segundo">
-2º ${data.jueves.segundo}
-</span>
+<div class="columna-nacional">
+<div class="titulo-nacional">JUEVES</div>
+<div class="premio-nacional">${data.jueves.primero}</div>
+<div class="reintegro-nacional">R: ${data.jueves.reintegros}</div>
 </div>
 
-<div class="bote">
-R:
-<br>
-${data.jueves.reintegros}
-</div>
-
-</div>
-
-</div>
-
-
-<div class="tarjeta nacional">
-
-<div class="cabecera">
-<img src="img/loterianacional-png.png" class="logo">
-</div>
-
-<div class="contenido">
-
-<div class="resultado">
-SÁBADO
-<br>
-1º ${data.sabado.primero}
-<br>
-<span class="segundo">
-2º ${data.sabado.segundo}
-</span>
-</div>
-
-<div class="bote">
-R:
-<br>
-${data.sabado.reintegros}
+<div class="columna-nacional">
+<div class="titulo-nacional">SÁBADO</div>
+<div class="premio-nacional">${data.sabado.primero}</div>
+<div class="reintegro-nacional">R: ${data.sabado.reintegros}</div>
 </div>
 
 </div>
