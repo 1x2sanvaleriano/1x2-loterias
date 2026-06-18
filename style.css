@@ -39,6 +39,16 @@ max-width:90%;
 object-fit:contain;
 }
 
+.logo-nacional{
+height:120px;
+max-width:95%;
+object-fit:contain;
+}
+
+.nacional .cabecera{
+height:120px;
+}
+
 .contenido{
 display:flex;
 justify-content:space-between;
@@ -65,11 +75,6 @@ font-weight:700;
 color:#ffcc80;
 font-size:24px;
 font-weight:700;
-}
-
-.segundo{
-font-size:24px;
-opacity:0.9;
 }
 
 .bote{
@@ -116,6 +121,37 @@ background:#4aa8be;
 background:#1976c5;
 }
 
+.contenido-nacional{
+display:flex;
+justify-content:space-around;
+align-items:center;
+padding:25px;
+}
+
+.columna-nacional{
+width:45%;
+text-align:center;
+color:white;
+}
+
+.titulo-nacional{
+font-size:28px;
+font-weight:900;
+margin-bottom:10px;
+}
+
+.premio-nacional{
+font-size:44px;
+font-weight:900;
+margin-bottom:10px;
+}
+
+.reintegro-nacional{
+font-size:28px;
+font-weight:700;
+color:#FFD54F;
+}
+
 .footer{
 text-align:center;
 color:#666;
@@ -129,13 +165,12 @@ h1{
     font-size:52px;
 }
 
-.cabecera{
-    height:95px;
-    padding-left:35px;
-}
-
 .logo{
     height:90px;
+}
+
+.logo-nacional{
+    height:140px;
 }
 
 .resultado{
