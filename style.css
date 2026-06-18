@@ -26,14 +26,15 @@ box-shadow:0 8px 20px rgba(0,0,0,0.20);
 
 .cabecera{
 background:white;
-height:90px;
+height:85px;
 display:flex;
 align-items:center;
-justify-content:center;
+justify-content:flex-start;
+padding-left:25px;
 }
 
 .logo{
-max-height:60px;
+height:80px;
 max-width:90%;
 object-fit:contain;
 }
@@ -46,7 +47,7 @@ padding:20px 30px;
 }
 
 .resultado{
-width:70%;
+width:68%;
 color:white;
 font-size:34px;
 font-weight:900;
@@ -72,18 +73,16 @@ opacity:0.9;
 }
 
 .bote{
-width:25%;
+width:28%;
 text-align:center;
 background:white;
 border-radius:15px;
 padding:15px;
-font-size:34px;
+font-size:42px;
 font-weight:900;
 color:#222;
 box-shadow:0 4px 12px rgba(0,0,0,0.20);
 }
-
-/* COLORES */
 
 .primitiva{
 background:#008a3d;
@@ -124,12 +123,19 @@ font-size:26px;
 margin:25px 0;
 }
 
-/* PANTALLA 32" VERTICAL */
-
 @media screen and (min-width:1000px){
 
 h1{
     font-size:52px;
+}
+
+.cabecera{
+    height:95px;
+    padding-left:35px;
+}
+
+.logo{
+    height:90px;
 }
 
 .resultado{
@@ -137,11 +143,7 @@ h1{
 }
 
 .bote{
-    font-size:40px;
-}
-
-.logo{
-    max-height:70px;
+    font-size:48px;
 }
 
 }
