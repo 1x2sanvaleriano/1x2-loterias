@@ -1,113 +1,147 @@
 body{
-    margin:0;
-    background:#f2f2f2;
-    font-family:Arial, Helvetica, sans-serif;
+margin:0;
+background:#f2f2f2;
+font-family:Arial, Helvetica, sans-serif;
 }
 
 h1{
-    text-align:center;
-    font-size:48px;
-    font-weight:900;
-    color:#444;
-    margin:20px 0;
+text-align:center;
+font-size:42px;
+font-weight:900;
+color:#333;
+margin:15px 0;
 }
 
 .contenedor{
-    width:95%;
-    margin:auto;
+width:96%;
+margin:auto;
 }
 
 .tarjeta{
-    position:relative;
-    border-radius:20px;
-    overflow:hidden;
-    margin-bottom:25px;
-    box-shadow:0 8px 18px rgba(0,0,0,0.50);
+border-radius:22px;
+overflow:hidden;
+margin-bottom:22px;
+box-shadow:0 8px 20px rgba(0,0,0,0.20);
 }
 
 .cabecera{
-    background:white;
-    height:90px;
+background:white;
+height:90px;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-.bote{
-    position:absolute;
-    top:40px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#f8f8f8;
-    padding:12px 40px;
-    border-radius:16px;
-    font-size:38px;
-    font-weight:900;
-    color:#333;
-    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+.logo{
+max-height:60px;
+max-width:90%;
+object-fit:contain;
 }
 
-.cuerpo{
-    padding-top:65px;
-    padding-bottom:25px;
-    text-align:center;
-    color:white;
+.contenido{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 30px;
 }
 
 .resultado{
-    font-size:40px;
-    font-weight:900;
-    line-height:1.6;
-    letter-spacing:2px;
+width:70%;
+color:white;
+font-size:34px;
+font-weight:900;
+line-height:1.6;
+letter-spacing:1px;
 }
 
 .complementario{
-    color:#ffe600;
-    font-size:40px;
+color:#fff176;
+font-size:24px;
+font-weight:700;
 }
 
 .reintegro{
-    color:#ffb347;
-    font-size:40px;
+color:#ffcc80;
+font-size:24px;
+font-weight:700;
 }
 
 .segundo{
-    font-size:28px;
-    opacity:0.85;
+font-size:24px;
+opacity:0.9;
 }
 
+.bote{
+width:25%;
+text-align:center;
+background:white;
+border-radius:15px;
+padding:15px;
+font-size:34px;
+font-weight:900;
+color:#222;
+box-shadow:0 4px 12px rgba(0,0,0,0.20);
+}
+
+/* COLORES */
+
 .primitiva{
-    background:#008f39;
+background:#008a3d;
 }
 
 .bonoloto{
-    background:#497C27;
+background:#7b8f2a;
 }
 
 .euromillones{
-    background:#163d6b;
+background:#173f72;
 }
 
 .eurodreams{
-    background:#6e4398;
+background:#7d58a5;
 }
 
 .gordo{
-    background:#df3945;
+background:#d93a42;
 }
 
 .quiniela{
-    background:#d61019;
+background:#c91824;
 }
 
 .quinigol{
-    background:#4db8cc;
+background:#4aa8be;
 }
 
 .nacional{
-    background:#1e84c6;
+background:#1976c5;
 }
 
 .footer{
-    text-align:center;
-    font-size:50px;
-    color:#666;
-    margin:30px 0;
+text-align:center;
+color:#666;
+font-size:26px;
+margin:25px 0;
+}
+
+/* PANTALLA 32" VERTICAL */
+
+@media screen and (min-width:1000px){
+
+h1{
+    font-size:52px;
+}
+
+.resultado{
+    font-size:42px;
+}
+
+.bote{
+    font-size:40px;
+}
+
+.logo{
+    max-height:70px;
+}
+
 }
