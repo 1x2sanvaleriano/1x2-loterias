@@ -1,12 +1,12 @@
 name: Prueba Automatizacion
 
 on:
-workflow_dispatch:
+  workflow_dispatch:  # 2 espacios antes
 
 jobs:
-prueba:
-runs-on: ubuntu-latest
+  prueba:             # 2 espacios antes
+    runs-on: ubuntu-latest  # 4 espacios antes
 
-steps:
-  - name: Hola Mundo
-    run: echo "GitHub Actions funciona correctamente"
+    steps:            # 4 espacios antes
+      - name: Hola Mundo  # 6 espacios antes
+        run: echo "GitHub Actions funciona correctamente"
