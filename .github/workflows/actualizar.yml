@@ -1,1 +1,32 @@
+name: Prueba Automatizacion
 
+on:
+schedule:
+- cron: '0 3 * * *'
+workflow_dispatch:
+
+permissions:
+contents: write
+
+jobs:
+prueba:
+runs-on: ubuntu-latest
+
+steps:
+  - name: Descargar repositorio
+    uses: actions/checkout@v4
+
+  - name: Actualizar fecha
+    run: |
+      echo "Última actualización: $(date)" > fecha.txt
+
+  - name: Commit automático
+    run: |
+      git config user.name "github-actions"
+      git config user.email "actions@github.com"
+
+      git add fecha.txt
+
+      git diff --staged --quiet || git commit -m "Actualización automática"
+
+      git push
