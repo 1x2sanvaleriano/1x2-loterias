@@ -1,12 +1,35 @@
 name: Prueba Automatizacion
 
 on:
-  workflow_dispatch:  # 2 espacios antes
+  schedule:
+    - cron: '0 0 *' # 2:00 España verano
+  workflow_dispatch: # Botón manual, 2 espacios
 
 jobs:
-  prueba:             # 2 espacios antes
-    runs-on: ubuntu-latest  # 4 espacios antes
+  prueba: # 2 espacios
+    runs-on: ubuntu-latest # 4 espacios
+    permissions:
+      contents: write # Para poder hacer commit
 
-    steps:            # 4 espacios antes
-      - name: Hola Mundo  # 6 espacios antes
-        run: echo "GitHub Actions funciona correctamente"
+    steps: # 4 espacios
+      - name: Checkout repo # 6 espacios
+        uses: actions/checkout@v4
+
+      - name: Instalar Python # 6 espacios
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias # 6 espacios
+        run: pip install requests
+
+      - name: Ejecutar sorteos.py # 6 espacios
+        run: python scripts/sorteos.py # <-- Aquí va tu línea
+
+      - name: Commit si hay cambios # 6 espacios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add datos/sorteos.json
+          git diff --staged --quiet || git commit -m "Auto: Actualizar sorteos $(date +'%Y-%m-%d %H:%M')"
+          git push
