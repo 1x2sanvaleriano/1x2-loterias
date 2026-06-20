@@ -1,79 +1,55 @@
-import requests
 import json
-from datetime import datetime, date
-from pathlib import Path
+import os
+from datetime import datetime
 
-BASE_URL = "https://www.loteriasyapuestas.es/es/api/resultados"
-DATA_FILE = Path("datos/sorteos.json")
+RUTA_JSON = 'datos.json' # Ruta donde tienes el json en tu repo
 
-JUEGOS = {
-    "primitiva": {"nombre": "La Primitiva", "dias": [3, 5]},
-    "bonoloto": {"nombre": "Bonoloto", "dias": [0,1,2,3,4,5,6]},
-    "euromillones": {"nombre": "Euromillones", "dias": [1, 4]},
-    "gordo": {"nombre": "El Gordo de la Primitiva", "dias": [6]},
-    "eurodreams": {"nombre": "EuroDreams", "dias": [0, 3]},
-    "loteria-nacional": {"nombre": "Lotería Nacional", "dias": [3, 5]},
-    "quiniela": {"nombre": "La Quiniela", "dias": [6, 0]},
-    "quinigol": {"nombre": "Quinigol", "dias": [6, 0]}
-}
+# 1. Cargar datos viejos si existen. Si no, empezar vacío
+if os.path.exists(RUTA_JSON):
+    with open(RUTA_JSON, 'r', encoding='utf-8') as f:
+        try:
+            datos = json.load(f)
+        except json.JSONDecodeError:
+            datos = {} # Si el json está corrupto, empezamos de 0
+else:
+    datos = {}
 
-def obtener_resultado(juego_id):
-    try:
-        url = f"{BASE_URL}/{juego_id}"
-        r = requests.get(url, timeout=15)
-        r.raise_for_status()
-        data = r.json()
+hoy = datetime.now().strftime("%d/%m")
 
-        if not data or "resultado" not in data[0]:
-            return None
+# 2. Ejemplo: Actualizar solo Primitiva si ya ha salido
+# Tu función de scraping te da estos valores
+primitiva_nueva = scrape_primitiva() # Esta es tu función
 
-        ultimo = data[0]
-        fecha_sorteo = datetime.strptime(ultimo["fechaSorteo"], "%Y-%m-%d").date()
+if primitiva_nueva: # Solo actualiza si el scrape ha devuelto algo
+    datos['primitiva'] = {
+        'fecha': hoy,
+        'numeros': primitiva_nueva['numeros'],
+        'complementario': primitiva_nueva['complementario'],
+        'reintegro': primitiva_nueva['reintegro'],
+        'bote': primitiva_nueva['bote']
+    }
+# Si primitiva_nueva es None/vacío, no tocas datos['primitiva']. Se queda como estaba.
 
-        if fecha_sorteo!= date.today():
-            return None
+# 3. Repite lo mismo para Bonoloto, Euromillones, etc
+bonoloto_nuevo = scrape_bonoloto()
+if bonoloto_nuevo:
+    datos['bonoloto'] = {
+        'fecha': hoy,
+        'numeros': bonoloto_nuevo['numeros'],
+        'complementario': bonoloto_nuevo['complementario'],
+        'reintegro': bonoloto_nuevo['reintegro'],
+        'bote': bonoloto_nuevo['bote']
+    }
 
-        return {
-            "fecha": ultimo["fechaSorteo"],
-            "combinacion": ultimo["combinacion"],
-            "reintegro": ultimo.get("reintegro", ""),
-            "complementario": ultimo.get("complementario", ""),
-            "estrellas": ultimo.get("estrellas", "")
-        }
-    except Exception as e:
-        print(f"Error en {juego_id}: {e}")
-        return None
+# Para Nacional Jueves/Sábado igual
+jueves_nuevo = scrape_jueves()
+if jueves_nuevo:
+    datos['jueves'] = {
+        'fecha': '17/04', # o la que toque
+        'primero': jueves_nuevo['primero'],
+        'reintegros': jueves_nuevo['reintegros']
+    }
 
-def main():
-    hoy = date.today()
-    dia_semana = hoy.weekday()
-
-    DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
-
-    if DATA_FILE.exists():
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
-            historico = json.load(f)
-    else:
-        historico = {}
-
-    nuevos = {}
-    for juego_id, info in JUEGOS.items():
-        if dia_semana in info["dias"]:
-            print(f"Consultando {info['nombre']}...")
-            resultado = obtener_resultado(juego_id)
-            if resultado:
-                nuevos[juego_id] = resultado
-                print(f" -> OK: {resultado['fecha']}")
-            else:
-                print(f" -> Sin datos aún para hoy")
-
-    if nuevos:
-        historico[hoy.isoformat()] = nuevos
-        with open(DATA_FILE, "w", encoding="utf-8") as f:
-            json.dump(historico, f, ensure_ascii=False, indent=2)
-        print(f"Guardado: {DATA_FILE}")
-    else:
-        print("Sin resultados nuevos que guardar.")
-
-if __name__ == "__main__":
-    main()
+# 4. Guardar el json completo, con lo viejo + lo nuevo
+with open(RUTA_JSON, 'w', encoding='utf-8') as f:
+    json.dump(datos, f, ensure_ascii=False, indent=2)
