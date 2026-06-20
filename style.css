@@ -1,6 +1,6 @@
 body{
-  background-color: #0a1f44; /* NUEVO: Azul oscuro */
-  color: #111; /* NUEVO: Texto oscuro por el fondo claro de tarjetas */
+  background-color: #0a1f44; /* Azul oscuro */
+  color: #111; 
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 15px;
@@ -10,7 +10,7 @@ h1{
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
-  color: #fff; /* El título sigue blanco sobre el fondo azul */
+  color: #fff;
 }
 
 .contenedor{
@@ -22,11 +22,11 @@ h1{
 }
 
 .tarjeta{
-  background-color: rgba(255, 255, 255, 0.5); /* NUEVO: Blanco 50% transparencia */
+  background-color: rgba(255, 255, 255, 0.5); /* Blanco 50% transparencia */
   border-radius: 14px;
   padding: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4); /* NUEVO: Sombra para destacar */
-  backdrop-filter: blur(4px); /* Efecto cristal */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
 }
 
 .cabecera{
@@ -37,12 +37,12 @@ h1{
 }
 
 .logo{
-  height: 48px; /* NUEVO: Logos más grandes */
+  height: 96px; /* NUEVO: Logos x2 */
   width: auto;
 }
 
 .logo-nacional{
-  height: 36px; /* NUEVO: Logos más grandes */
+  height: 72px; /* NUEVO: Logos x2 */
 }
 
 .fecha{
@@ -54,139 +54,3 @@ h1{
 .contenido{
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.resultado{
-  width: 100%;
-  font-weight:900;
-  line-height:1.4;
-  text-align: center; /* NUEVO: Centra todo el contenido */
-}
-
-.bote{
-  width: 100%;
-  text-align: center; /* NUEVO: Centrado */
-  font-size:24px; /* NUEVO: Botes más grandes */
-  font-weight:900;
-  color: #0a1f44; /* Azul oscuro para que contraste */
-}
-
-/* BOLITAS CENTRADAS */
-.bolas-container{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 10px;
-  justify-content: center; /* NUEVO: Centra las bolas */
-}
-
-.bola{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #0a1f44; /* Azul oscuro */
-  color: #fff; /* Texto blanco */
-  font-weight: 900;
-  font-size: 17px;
-  flex-shrink: 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-.bola.estrella{
-  background: #ffd700;
-  color: #000;
-}
-
-.info-extra{
-  font-size: 17px;
-  font-weight: 700;
-  margin: 0 6px;
-  display: inline-block;
-}
-
-.numeros{
-  white-space: nowrap;
-  overflow-x: auto;
-  display: block;
-  font-size: 17px;
-  margin-bottom: 6px;
-  text-align: center;
-}
-
-/* Lotería Nacional */
-.contenido-nacional{
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-}
-
-.columna-nacional{
-  width: 48%;
-}
-
-.titulo-nacional{
-  font-size:16px;
-  font-weight:700;
-  margin-bottom: 6px;
-  color: #333;
-}
-
-.premio-nacional{
-  font-size:26px;
-  font-weight:900;
-  margin-bottom: 4px;
-}
-
-.reintegro-nacional{
-  font-size:17px;
-  font-weight:700;
-}
-
-.footer{
-  text-align: center; /* Ya estaba centrado */
-  margin-top: 30px;
-  font-size: 13px;
-  color: #ccc; /* Gris claro sobre fondo azul */
-  font-weight: 700;
-}
-
-/* Tablet: 2 columnas */
-@media screen and (min-width:600px){
- .contenedor{
-    grid-template-columns: repeat(2, 1fr);
-  }
- .contenido{
-    flex-direction: column; /* Seguimos con bote abajo */
-  }
- .bote{ font-size:28px; } /* Botes más grandes */
- .bola{
-    width: 44px;
-    height: 44px;
-    font-size: 21px;
-  }
- .info-extra{ font-size: 19px; }
- .numeros{ font-size: 19px; }
- .logo{ height: 60px; } /* Logos más grandes */
- .logo-nacional{ height: 44px; }
-}
-
-/* PC: 3 columnas */
-@media screen and (min-width:1000px){
- .contenedor{
-    grid-template-columns: repeat(3, 1fr);
-    padding: 0 10px;
-  }
- .bote{ font-size:32px; } /* Botes más grandes */
- .bola{
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-  }
- .numeros{ font-size: 21px; }
- .logo{ height: 72px; } /* Logos más grandes */
- .logo-nacional{ height: 52px; }
-}
