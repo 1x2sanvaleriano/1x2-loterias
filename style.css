@@ -1,186 +1,64 @@
 body{
-  background-color: #111;
-  color: white;
+  background-color: #0a1f44; /* NUEVO: Azul oscuro */
+  color: #111; /* NUEVO: Texto oscuro por el fondo claro de tarjetas */
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 12px;
+  padding: 15px;
 }
 
 h1{
   text-align: center;
-  font-size: 22px;
-  margin-bottom: 15px;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff; /* El título sigue blanco sobre el fondo azul */
 }
 
 .contenedor{
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 15px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 .tarjeta{
-  background-color: #1e1e1e;
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  background-color: rgba(255, 255, 255, 0.5); /* NUEVO: Blanco 50% transparencia */
+  border-radius: 14px;
+  padding: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4); /* NUEVO: Sombra para destacar */
+  backdrop-filter: blur(4px); /* Efecto cristal */
 }
 
 .cabecera{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .logo{
-  height: 28px;
+  height: 48px; /* NUEVO: Logos más grandes */
   width: auto;
 }
 
 .logo-nacional{
-  height: 22px;
+  height: 36px; /* NUEVO: Logos más grandes */
 }
 
 .fecha{
-  color: #ccc;
-  font-size: 15px;
+  color: #333;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .contenido{
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .resultado{
   width: 100%;
-  color:white;
   font-weight:900;
   line-height:1.4;
-}
-
-.bote{
-  width: 100%;
-  text-align: right;
-  font-size:18px;
-  font-weight:700;
-  color: #ffd700;
-}
-
-/* BOLITAS */
-.bolas-container{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 8px;
-}
-
-.bola{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #fff;
-  color: #000;
-  font-weight: 900;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-.bola.estrella{
-  background: #ffd700;
-  color: #000;
-}
-
-.info-extra{
-  font-size: 16px;
-  font-weight: 700;
-  margin-right: 12px;
-}
-
-.numeros{
-  white-space: nowrap;
-  overflow-x: auto;
-  display: block;
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-/* Lotería Nacional */
-.contenido-nacional{
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-}
-
-.columna-nacional{
-  width: 48%;
-}
-
-.titulo-nacional{
-  font-size:15px;
-  font-weight:700;
-  margin-bottom: 6px;
-  color: #ccc;
-}
-
-.premio-nacional{
-  font-size:24px;
-  font-weight:900;
-  margin-bottom: 4px;
-}
-
-.reintegro-nacional{
-  font-size:16px;
-  font-weight:700;
-}
-
-.footer{
-  text-align: center;
-  margin-top: 25px;
-  font-size: 12px;
-  color: #666;
-}
-
-/* Tablet: 2 columnas */
-@media screen and (min-width:600px){
-  .contenedor{
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .contenido{
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .resultado{ width: 70%; }
-  .bote{ width: 28%; font-size:20px; text-align: right; }
-  .bola{
-    width: 42px;
-    height: 42px;
-    font-size: 20px;
-  }
-  .info-extra{ font-size: 18px; }
-  .numeros{ font-size: 18px; }
-  .logo{ height: 34px; }
-}
-
-/* PC: 3 columnas */
-@media screen and (min-width:1000px){
-  .contenedor{
-    grid-template-columns: repeat(3, 1fr);
-    padding: 0 10px;
-  }
-  .bote{ font-size:22px; }
-  .bola{
-    width: 46px;
-    height: 46px;
-    font-size: 22px;
-  }
-  .numeros{ font-size: 20px; }
-  .logo{ height: 40px; }
-}
+  text-align: center; /* N
