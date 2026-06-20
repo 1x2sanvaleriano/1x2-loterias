@@ -13,7 +13,6 @@ fetch('datos.json')
 .then(data => {
 
 const contenedor = document.getElementById('contenedor');
-
 const txt = (v) => v ? v.replaceAll(' ',' - ') : '-';
 
 contenedor.innerHTML = `
@@ -25,8 +24,7 @@ contenedor.innerHTML = `
 </div>
 <div class="contenido">
 <div class="resultado">
-${txt(data.primitiva?.numeros)}
-<br>
+<span class="numeros">${txt(data.primitiva?.numeros)}</span>
 <span class="complementario">C: ${data.primitiva?.complementario || '-'}</span>
 &nbsp;&nbsp;
 <span class="reintegro">R: ${data.primitiva?.reintegro || '-'}</span>
@@ -42,8 +40,7 @@ ${txt(data.primitiva?.numeros)}
 </div>
 <div class="contenido">
 <div class="resultado">
-${txt(data.bonoloto?.numeros)}
-<br>
+<span class="numeros">${txt(data.bonoloto?.numeros)}</span>
 <span class="complementario">C: ${data.bonoloto?.complementario || '-'}</span>
 &nbsp;&nbsp;
 <span class="reintegro">R: ${data.bonoloto?.reintegro || '-'}</span>
@@ -59,9 +56,8 @@ ${txt(data.bonoloto?.numeros)}
 </div>
 <div class="contenido">
 <div class="resultado">
-${txt(data.euromillones?.numeros)}
-<br>
-⭐ ${data.euromillones?.estrellas || '-'}
+<span class="numeros">${txt(data.euromillones?.numeros)}</span>
+<span class="numeros">⭐ ${txt(data.euromillones?.estrellas)}</span>
 </div>
 <div class="bote">${data.euromillones?.bote || '-'}</div>
 </div>
@@ -74,8 +70,7 @@ ${txt(data.euromillones?.numeros)}
 </div>
 <div class="contenido">
 <div class="resultado">
-${txt(data.eurodreams?.numeros)}
-<br>
+<span class="numeros">${txt(data.eurodreams?.numeros)}</span>
 Sueño: ${data.eurodreams?.sueno || '-'}
 </div>
 <div class="bote">${data.eurodreams?.premio || '-'}</div>
@@ -89,8 +84,7 @@ Sueño: ${data.eurodreams?.sueno || '-'}
 </div>
 <div class="contenido">
 <div class="resultado">
-${txt(data.gordo?.numeros)}
-<br>
+<span class="numeros">${txt(data.gordo?.numeros)}</span>
 Clave: ${data.gordo?.clave || '-'}
 </div>
 <div class="bote">${data.gordo?.bote || '-'}</div>
@@ -104,7 +98,16 @@ Clave: ${data.gordo?.clave || '-'}
 </div>
 <div class="contenido">
 <div class="resultado">
-${data.quiniela?.resultado || '-'}
+${(() => {
+  const res = data.quiniela?.resultado || '';
+  const partes = res.split(' ').filter(p => p);
+  const catorce = partes.slice(0, 14).join(' - ');
+  const pleno = partes[14] || '';
+  return `
+    <span class="numeros">${catorce || '-'}</span>
+    ${pleno? `<div>Pleno: ${pleno}</div>` : ''}
+  `;
+})()}
 </div>
 <div class="bote">${data.quiniela?.bote || '-'}</div>
 </div>
