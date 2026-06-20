@@ -116,3 +116,71 @@ h1{
   display: flex;
   justify-content: space-around;
   text-align: center;
+}
+
+.columna-nacional{
+  width: 48%;
+}
+
+.titulo-nacional{
+  font-size:15px;
+  font-weight:700;
+  margin-bottom: 6px;
+  color: #ccc;
+}
+
+.premio-nacional{
+  font-size:24px;
+  font-weight:900;
+  margin-bottom: 4px;
+}
+
+.reintegro-nacional{
+  font-size:16px;
+  font-weight:700;
+}
+
+.footer{
+  text-align: center;
+  margin-top: 25px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Tablet: 2 columnas */
+@media screen and (min-width:600px){
+  .contenedor{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contenido{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .resultado{ width: 70%; }
+  .bote{ width: 28%; font-size:20px; text-align: right; }
+  .bola{
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+  }
+  .info-extra{ font-size: 18px; }
+  .numeros{ font-size: 18px; }
+  .logo{ height: 34px; }
+}
+
+/* PC: 3 columnas */
+@media screen and (min-width:1000px){
+  .contenedor{
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 10px;
+  }
+  .bote{ font-size:22px; }
+  .bola{
+    width: 46px;
+    height: 46px;
+    font-size: 22px;
+  }
+  .numeros{ font-size: 20px; }
+  .logo{ height: 40px; }
+}
