@@ -29,8 +29,8 @@ background:white;
 height:85px;
 display:flex;
 align-items:center;
-justify-content:flex-start;
-padding-left:25px;
+justify-content: space-between; /* MOD: Para separar logo y fecha */
+padding: 0 25px; /* MOD: padding a ambos lados */
 }
 
 .logo{
@@ -47,6 +47,14 @@ object-fit:contain;
 
 .nacional .cabecera{
 height:120px;
+}
+
+/* NUEVO: Fecha arriba a la derecha */
+.fecha{
+  font-size: 18px;
+  font-weight: 700;
+  color: #666;
+  white-space: nowrap;
 }
 
 .contenido{
