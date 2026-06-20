@@ -3,19 +3,19 @@ body{
   color: white;
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 15px;
 }
 
 h1{
   text-align: center;
-  font-size: 28px;
-  margin-bottom: 30px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .contenedor{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: 1fr; /* NUEVO: Móvil siempre 1 columna */
+  gap: 15px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -23,36 +23,37 @@ h1{
 .tarjeta{
   background-color: #1e1e1e;
   border-radius: 12px;
-  padding: 15px;
+  padding: 12px 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  overflow: hidden; /* NUEVO: Evita que se salga */
 }
 
 .cabecera{
   display: flex;
-  justify-content: space-between; /* NUEVO: Logo izq, Fecha der */
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .logo{
-  height: 40px;
+  height: 32px;
   width: auto;
 }
 
 .logo-nacional{
-  height: 30px;
+  height: 24px;
 }
 
-.fecha{ /* NUEVO: Fecha arriba derecha */
+.fecha{
   color: #ccc;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .contenido{
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 /* NUEVO: Para que ningún número se parta en 2 líneas */
@@ -60,28 +61,30 @@ h1{
   white-space: nowrap;
   display: block;
   margin-bottom: 4px;
+  overflow-x: auto; /* Por si acaso, hace scroll horizontal */
 }
 
 .resultado{
-  width:68%;
+  width: 70%;
   color:white;
-  font-size:34px;
+  font-size:26px; /* NUEVO: Más pequeño en móvil */
   font-weight:900;
-  line-height:1.6;
-  letter-spacing:1px;
+  line-height:1.5;
+  letter-spacing:0.5px;
 }
 
 .complementario, .reintegro{
-  font-size:24px;
+  font-size:18px;
   font-weight:700;
 }
 
 .bote{
-  width:30%;
+  width:28%;
   text-align: right;
-  font-size:22px;
+  font-size:18px;
   font-weight:700;
   color: #ffd700;
+  padding-left: 5px;
 }
 
 /* Lotería Nacional */
@@ -96,46 +99,67 @@ h1{
 }
 
 .titulo-nacional{
-  font-size:18px;
+  font-size:16px;
   font-weight:700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #ccc;
 }
 
 .premio-nacional{
-  font-size:32px;
+  font-size:26px;
   font-weight:900;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .reintegro-nacional{
-  font-size:22px;
+  font-size:18px;
   font-weight:700;
 }
 
-/* Quiniela: 15 resultados, letra más pequeña para quepan */
+/* Quiniela: 15 resultados */
 .tarjeta.quiniela .numeros{
-  font-size:20px; 
+  font-size:16px; 
   line-height:1.4;
   margin-bottom:6px;
 }
 
 .footer{
   text-align: center;
-  margin-top: 40px;
-  font-size: 14px;
+  margin-top: 30px;
+  font-size: 12px;
   color: #666;
 }
 
-/* En PC los hacemos un poco más pequeños para quepan los 6 */
-@media screen and (min-width:1000px){
+/* PC/Tablet: 2 o 3 columnas y letra más grande */
+@media screen and (min-width:700px){
+  .contenedor{
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 10px;
+  }
+  .resultado{
+    font-size:34px; 
+  }
+  .numeros{
+    font-size:34px;
+  }
+  .bote{
+    font-size:22px;
+  }
+  .tarjeta.quiniela .numeros{
+    font-size:20px; 
+  }
+  .logo{ height: 40px; }
+  .logo-nacional{ height: 30px; }
+}
+
+@media screen and (min-width:1100px){
+  .contenedor{
+    grid-template-columns: repeat(3, 1fr);
+  }
   .resultado{
     font-size:38px; 
   }
   .numeros{
     font-size:38px;
-  }
-  .tarjeta.quiniela .numeros{
-    font-size:22px; 
   }
 }
