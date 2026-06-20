@@ -22,7 +22,7 @@ h1{
 }
 
 .tarjeta{
-  background-color: rgba(255, 255, 255, 0.5); /* NUEVO: Blanco 50% transparencia */
+  background-color: rgba(255, 255, 255, 0.3); /* NUEVO: Blanco 50% transparencia */
   border-radius: 14px;
   padding: 15px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.4); /* NUEVO: Sombra para destacar */
@@ -37,17 +37,17 @@ h1{
 }
 
 .logo{
-  height: 48px; /* NUEVO: Logos más grandes */
+  height: 96px; /* NUEVO: Logos más grandes */
   width: auto;
 }
 
 .logo-nacional{
-  height: 36px; /* NUEVO: Logos más grandes */
+  height: 72px; /* NUEVO: Logos más grandes */
 }
 
 .fecha{
   color: #333;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 700;
 }
 
