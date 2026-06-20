@@ -27,7 +27,7 @@ steps:
 
   - name: Ejecutar script
     run: |
-      python scripts/actualizar.py
+      python scripts/actualizar_sorteos.py
 
   - name: Guardar cambios
     run: |
