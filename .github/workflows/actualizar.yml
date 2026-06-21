@@ -1,29 +1,25 @@
 name: Actualizar Loterias
 on:
   schedule:
-    - cron: '30 22,2,6,10,14,18 *' # FIX: Cada 4 horas, formato correcto
+    - cron: '0 */4 *' # Cada 4 horas. Más simple y no falla
   workflow_dispatch:
 
 permissions:
-  contents: write # FIX: Para poder hacer push
+  contents: write
 
 jobs:
   actualizar:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-
     - name: Install dependencies
       run: pip install requests beautifulsoup4 lxml
-
     - name: Run script
       run: python scripts/sorteos.py
-
     - name: Commit y Push
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
