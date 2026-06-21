@@ -1,19 +1,17 @@
 name: Actualizar Loterias
 on:
   schedule:
-    - cron: '0 */4 *' # Cada 4 horas
-  workflow_dispatch: # Y también manual
+    - cron: '0 */4 *' # FIX: Cada 4 horas, formato correcto
+  workflow_dispatch:
 
 permissions:
-  contents: write # NECESARIO para poder hacer push
+  contents: write # FIX: Para poder hacer push
 
 jobs:
   actualizar:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0 # Necesario para push
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -26,10 +24,8 @@ jobs:
     - name: Run script
       run: python scripts/sorteos.py
 
-    - name: Commit changes
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add datos.json
-        git diff --staged --quiet || git commit -m "Auto update sorteos $(date +'%Y-%m-%d %H:%M')"
-        git push
+    - name: Commit y Push
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: 'bot: auto update sorteos'
+        file_pattern: datos.json
