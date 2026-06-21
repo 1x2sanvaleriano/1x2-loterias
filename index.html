@@ -26,6 +26,7 @@ h1{text-align:center;font-size:24px;margin-bottom:20px;color:#fff}
 .premio-nacional{font-size:26px;font-weight:900;margin-bottom:4px}
 .reintegro-nacional{font-size:17px;font-weight:700}
 .footer{text-align:center;margin-top:30px;font-size:22px;color:#ffd700;font-weight:900}
+.debug{color:#ff0;background:#000;padding:10px;margin-bottom:15px;font-size:12px;word-break:break-all}
 @media screen and (min-width:600px){
  .contenedor{grid-template-columns:repeat(2,1fr)}
  .bote{font-size:28px;padding:10px 20px}
@@ -43,8 +44,37 @@ h1{text-align:center;font-size:24px;margin-bottom:20px;color:#fff}
 </style>
 </head><body>
 <h1>ÚLTIMOS RESULTADOS Y BOTES</h1>
-<div class="contenedor" id="contenedor">Cargando...</div>
+<div id="debug" class="debug">Cargando datos...</div>
+<div class="contenedor" id="contenedor"></div>
 <div class="footer">+18 · JUEGA CON RESPONSABILIDAD</div>
 <script>
 const crearBolas = str => str ? str.split(' ').map(n=>`<span class="bola">${n}</span>`).join('') : '-';
-const
+const crearEstrellas = str => str ? str.split(' ').map(n=>`<span class="bola estrella">${n}</span>`).join('') : '-';
+
+const pintar = (data) => {
+  document.getElementById('debug').innerHTML = 'Datos cargados OK. Fecha Primitiva: ' + data.primitiva.fecha;
+  document.getElementById('contenedor').innerHTML = `
+  <div class="tarjeta"><div class="cabecera"><img src="img/primitiva-png.png" class="logo"><div class="fecha">${data.primitiva.fecha}</div></div><div class="contenido"><div class="resultado"><div class="bolas-container">${crearBolas(data.primitiva.numeros)}</div><span class="info-extra">C: ${data.primitiva.complementario}</span><span class="info-extra">R: ${data.primitiva.reintegro}</span></div><div class="bote">${data.primitiva.bote}</div></div></div>
+  <div class="tarjeta"><div class="cabecera"><img src="img/bonoloto-png.png" class="logo"><div class="fecha">${data.bonoloto.fecha}</div></div><div class="contenido"><div class="resultado"><div class="bolas-container">${crearBolas(data.bonoloto.numeros)}</div><span class="info-extra">C: ${data.bonoloto.complementario}</span><span class="info-extra">R: ${data.bonoloto.reintegro}</span></div><div class="bote">${data.bonoloto.bote}</div></div></div>
+  <div class="tarjeta"><div class="cabecera"><img src="img/euromillones-png.png" class="logo"><div class="fecha">${data.euromillones.fecha}</div></div><div class="contenido"><div class="resultado"><div class="bolas-container">${crearBolas(data.euromillones.numeros)}</div><div class="bolas-container">${crearEstrellas(data.euromillones.estrellas)}</div></div><div class="bote">${data.euromillones.bote}</div></div></div>
+  <div class="tarjeta"><div class="cabecera"><img src="img/eurodreams-png.png" class="logo"><div class="fecha">${data.eurodreams.fecha}</div></div><div class="contenido"><div class="resultado"><div class="bolas-container">${crearBolas(data.eurodreams.numeros)}</div><span class="info-extra">Sueño: ${data.eurodreams.sueno}</span></div><div class="bote">${data.eurodreams.premio}</div></div></div>
+  <div class="tarjeta"><div class="cabecera"><img src="img/gordo-png.png" class="logo"><div class="fecha">${data.gordo.fecha}</div></div><div class="contenido"><div class="resultado"><div class="bolas-container">${crearBolas(data.gordo.numeros)}</div><span class="info-extra">Clave: ${data.gordo.clave}</span></div><div class="bote">${data.gordo.bote}</div></div></div>
+  <div class="tarjeta"><div class="cabecera"><img src="img/quiniela-png.png" class="logo"><div class="fecha">${data.quiniela.fecha}</div></div><div class="contenido"><div class="resultado"><div class="numeros">1 - X - 2 - 1 - X - 1 - 2 - X - 1 - 1 - X - 2 - 1 - X</div><div>Pleno: 2 1-0</div></div><div class="bote">${data.quiniela.bote}</div></div></div>
+  <div class="tarjeta"><div class="cabecera"><img src="img/quinigol-png.png" class="logo"><div class="fecha">${data.quinigol.fecha}</div></div><div class="contenido"><div class="resultado">${data.quinigol.resultado}</div><div class="bote">${data.quinigol.bote}</div></div></div>
+  <div class="tarjeta"><div class="cabecera"><img src="img/loterianacional-png.png" class="logo logo-nacional"><div class="fecha">J/S</div></div><div class="contenido-nacional"><div class="columna-nacional"><div class="titulo-nacional">JUEVES ${data.jueves.fecha}</div><div class="premio-nacional">${data.jueves.primero}</div><div class="reintegro-nacional">R: ${data.jueves.reintegros}</div></div><div class="columna-nacional"><div class="titulo-nacional">SÁBADO ${data.sabado.fecha}</div><div class="premio-nacional">${data.sabado.primero}</div><div class="reintegro-nacional">R: ${data.sabado.reintegros}</div></div></div></div>
+  `;
+}
+
+fetch('https://raw.githubusercontent.com/1x2sanvaleriano/1x2-loterias/main/datos.json?v=' + new Date().getTime())
+.then(r => {
+  if(!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
+})
+.then(data => {
+  pintar(data);
+})
+.catch(e => {
+  document.getElementById('debug').innerHTML = 'ERROR: ' + e.message;
+  document.getElementById('contenedor').innerHTML = `<h2 style="text-align:center;color:#ff5555;margin:40px">No se pudo cargar datos.json</h2>`;
+});
+</script></body></html>
