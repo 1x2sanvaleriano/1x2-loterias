@@ -1,7 +1,7 @@
 name: Actualizar Loterias
 on:
   schedule:
-    - cron: '0 */4 * * *' # Cada 4 horas. Más simple y no falla
+    - cron: '0 */4 *'  # Cada 4 horas: 00:00, 04:00, 08:00, 12:00, 16:00, 20:00 UTC
   workflow_dispatch:
 
 permissions:
@@ -11,17 +11,22 @@ jobs:
   actualizar:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-    - name: Install dependencies
-      run: pip install requests beautifulsoup4 lxml
-    - name: Run script
-      run: python scripts/sorteos.py
-    - name: Commit y Push
-      uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        commit_message: 'bot: auto update sorteos'
-        file_pattern: datos.json
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml
+
+      - name: Run script
+        run: python scripts/sorteos.py
+
+      - name: Commit y Push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'bot: auto update sorteos'
+          file_pattern: datos.json
