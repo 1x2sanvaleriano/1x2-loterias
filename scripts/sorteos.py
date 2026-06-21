@@ -1,109 +1,125 @@
-import json, os, requests
+import json, json, json, requests
 from datetime import datetime
 
-RUTA_JSON = 'datos.json'
-URL = "https://www.loteriasyapuestas.es/loterias/json/ultimos-resultados.json"
-HEADERS = {'User-Agent': 'Mozilla/5.0'}
+URL = "https://loterias-api.vercel.app/api/ultimosResultados"
+FILE = "datos.json"
 
-if os.path.exists(RUTA_JSON):
-    with open(RUTA_JSON, 'r', encoding='utf-8') as f:
+# Cargar datos actuales
+datos = {}
+if os.path.exists(FILE):
+    with open(FILE, "r", encoding="utf" - 8) as f:
         datos = json.load(f)
-else:
-    datos = {}
 
-def fecha(fecha_iso):
-    return datetime.strptime(fecha_iso, '%Y-%m-%d').strftime('%d/%m/%Y')
-
-def actualizar():
-    r = requests.get(URL, headers=HEADERS, timeout=20)
-    r.raise_for_status()
-    res = r.json()
-
-    for juego in res:
-        nombre = juego['nombre'].lower()
-        fecha_juego = fecha(juego['fecha_sorteo'])
-        numeros = juego.get('combinacion', [])
-        bote = juego.get('bote', '0') + '€'
-
-        if 'primitiva' in nombre and 'jueves' not in nombre and 'sabado' not in nombre:
-            datos['primitiva'] = {
-                'fecha': fecha_juego,
-                'numeros': " ".join(numeros[:6]),
-                'complementario': numeros[6],
-                'reintegro': juego.get('reintegro', ''),
-                'bote': bote
-            }
-            print(f"primitiva actualizado: {fecha_juego}")
-
-        elif 'bonoloto' in nombre:
-            datos['bonoloto'] = {
-                'fecha': fecha_juego,
-                'numeros': " ".join(numeros[:6]),
-                'complementario': numeros[6],
-                'reintegro': juego.get('reintegro', ''),
-                'bote': bote
-            }
-            print(f"bonoloto actualizado: {fecha_juego}")
-
-        elif 'euromillones' in nombre:
-            datos['euromillones'] = {
-                'fecha': fecha_juego,
-                'numeros': " ".join(numeros[:5]),
-                'estrellas': " ".join(numeros[5:7]),
-                'bote': bote
-            }
-            print(f"euromillones actualizado: {fecha_juego}")
-
-        elif 'eurojackpot' in nombre or 'el gordo' in nombre:
-            datos['gordo'] = {
-                'fecha': fecha_juego,
-                'numeros': " ".join(numeros[:5]),
-                'clave': numeros[5],
-                'bote': bote
-            }
-            print(f"gordo actualizado: {fecha_juego}")
-
-        elif 'eurodreams' in nombre:
-            datos['eurodreams'] = {
-                'fecha': fecha_juego,
-                'numeros': " ".join(numeros[:6]),
-                'sueno': numeros[6],
-                'premio': juego.get('premio_especial', '0€')
-            }
-            print(f"eurodreams actualizado: {fecha_juego}")
-
-        elif 'quiniela' in nombre and 'gol' not in nombre:
-            datos['quiniela'] = {
-                'fecha': fecha_juego,
-                'resultado': juego.get('combinacion_str', ''),
-                'bote': bote
-            }
-            print(f"quiniela actualizado: {fecha_juego}")
-
-        elif 'quinigol' in nombre:
-            datos['quinigol'] = {
-                'fecha': fecha_juego,
-                'resultado': juego.get('combinacion_str', ''),
-                'bote': bote
-            }
-            print(f"quinigol actualizado: {fecha_juego}")
-
-        elif 'loteria nacional' in nombre:
-            dia = datetime.strptime(fecha_juego, '%d/%m/%Y').weekday()
-            item = {'fecha': fecha_juego, 'primero': numeros[0], 'reintegros': " ".join(juego.get('reintegros', []))}
-            if dia == 3:
-                datos['jueves'] = item
-                print(f"jueves actualizado: {fecha_juego}")
-            elif dia == 5:
-                datos['sabado'] = item
-                print(f"sabado actualizado: {fecha_juego}")
-
-    with open(RUTA_JSON, 'w', encoding='utf-8') as f:
-        json.dump(datos, f, ensure_ascii=False, indent=2)
-
-    print("Proceso terminado. datos.json actualizado.")
+def fmt_date(s):
+    # API devuelve "DD/MM/YYYY"
+    return s
 
 try:
-    actualizar()
+    r = requests.get(URL, timeout=20)
+    r.raise_for_status()
+    api = r.json() # Es un dict: {"LA_PRIMITIVA": {...}, "EUROMILLONES": {...}}
+    
+    # LA_PRIMITIVA
+    p = api.get("LA_PRIMITIVA")
+    if p:
+        datos["primitiva"] = {
+            "fecha": fmt_date(p["fecha"]),
+            "numeros": " ".join(p["numeros"]),
+            "complementario": p["complementario"],
+            "reintegros": p["reintegro"],
+            "bote": p["bote"]
+        }
+        print(f"primitiva: {p['fecha']}")
+
+    # EUROMILLONES  
+    em = api.get("EUROMILLONES")
+    if em:
+        datos["euromillones"] = {
+            "fecha": fmt_date(em["fecha"]),
+            "numeros": " ".join(em["numeros"]),
+            "estrellas": " ".join(em["estrellas"]),
+            "bote": em["bote"]
+        }
+        print(f"euromillones: {em['fecha']}")
+
+    # BONOLOTO
+    b = api.get("BONOLOTO")
+    if b:
+        datos["bonoloto"] = {
+            "fecha": fmt_date(b["fecha"]),
+            "numeros": " ".join(b["numeros"]),
+            "complementario": b["complementario"],
+            "reintegros": b["reintegro"],
+            "bote": b["bote"]
+        }
+        print(f"bonoloto: {b['fecha']}")
+
+    # EUROMILLONES / EUROMILLONES
+    euro = api.get("EUROMILLONES")
+    if euro:
+        datos["euro"] = {
+            "fecha": fmt_date(euro["fecha"]),
+            "numeros": " ".join(euro["numeros"]),
+            "estrellas": " ".join(euro["estrellas"]),
+            "bote": euro["bote"]
+        }
+        print(f"euro: {euro['fecha']}")
+
+    # LOTERIA NACIONAL - JUEVES
+    ln_j = api.get("LOTERIA_NACIONAL_JUEVES")
+    if ln_j:
+        datos["jueves"] = {
+            "fecha": fmt_date(ln_j["fecha"]),
+            "primero": ln_j["primero"],
+            "reintegros": " ".join(ln_j["reintegros"])
+        }
+        print(f"jueves: {ln_j['fecha']}")
+
+    # LOTERIA NACIONAL - SABADO
+    ln_s = api.get("LOTERIA_NACIONAL_SABADO")
+    if ln_s:
+        datos["sabado"] = {
+            "fecha": fmt_date(ln_s["fecha"]),
+            "primero": ln_s["primero"],
+            "reintegros": " ".join(ln_s["reintegros"])
+        }
+        print(f"sabado: {ln_s['fecha']}")
+
+    # QUINIELA
+    quin = api.get("QUINIELA")
+    if quin:
+        datos["quiniela"] = {
+            "fecha": fmt_date(quin["fecha"]),
+            "resultado": quin["resultado"],
+            "bote": quin["bote"]
+        }
+        print(f"quiniela: {quin['fecha']}")
+
+    # QUINIGOL
+    qgol = api.get("QUINIGOL")
+    if qgol:
+        datos["quinigol"] = {
+            "fecha": fmt_date(qgol["fecha"]),
+            "resultado": qgol["resultado"],
+            "bote": qgol["bote"]
+        }
+        print(f"quinigol: {qgol['fecha']}")
+
+    # EUROMILLONES
+    eurom = api.get("EUROMILLONES")
+    if eurom:
+        datos["euro"] = {
+            "fecha": fmt_date(eurom["fecha"]),
+            "numeros": " ".join(eurom["numeros"]),
+            "estrellas": " ".join(eurom["estrellas"]),
+            "bote": eurom["bote"]
+        }
+        print(f"euro: {eurom['fecha']}")
+
+    # GUARDAR
+    with open(FILE, "w", encoding="utf - 8") as f:
+        json.dump(datos, f, ensure_ascii=False, indent=2)
+    print("OK: datos.json actualizado")
+
 except Exception as e:
-    print(f"Error general: {e}")
+    print(f"ERROR: {e}")
