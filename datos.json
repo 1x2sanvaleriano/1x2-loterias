@@ -1,11 +1,54 @@
 {
-  "primitiva": {"fecha":"20/04/2026","numeros":"05 12 19 28 33 47","complementario":"22","reintegro":"7","bote":"32 M€"},
-  "bonoloto": {"fecha":"21/04/2026","numeros":"03 08 15 22 35 46","complementario":"18","reintegro":"4","bote":"1,8 M€"},
-  "euromillones": {"fecha":"19/04/2026","numeros":"08 17 23 34 46","estrellas":"03 09","bote":"125 M€"},
-  "eurodreams": {"fecha":"21/04/2026","numeros":"06 12 18 24 29 38","sueno":"4","premio":"20.000 €/MES"},
-  "gordo": {"fecha":"20/04/2026","numeros":"02 10 23 31 45","clave":"8","bote":"9 M€"},
-  "quiniela": {"fecha":"20/04/2026","resultado":"1 X 2 1 X 1 2 X 1 1 X 2 1 X 2 1-0","bote":"850.000 €"},
-  "quinigol": {"fecha":"20/04/2026","resultado":"1-0 2-1 0-0 1-1 3-1 2-0","bote":"180.000 €"},
-  "jueves": {"fecha":"17/04/2026","primero":"37129","reintegros":"9 2 7"},
-  "sabado": {"fecha":"19/04/2026","primero":"51248","reintegros":"8 4 1"}
+  "primitiva": {
+    "fecha": "20/04/2026",
+    "numeros": "05 12 19 28 33 47",
+    "complementario": "22",
+    "reintegro": "7",
+    "bote": "32 M€"
+  },
+  "bonoloto": {
+    "fecha": "21/04/2026",
+    "numeros": "03 08 15 22 35 46",
+    "complementario": "18",
+    "reintegro": "4",
+    "bote": "1,8 M€"
+  },
+  "euromillones": {
+    "fecha": "19/04/2026",
+    "numeros": "08 17 23 34 46",
+    "estrellas": "03 09",
+    "bote": "125 M€"
+  },
+  "eurodreams": {
+    "fecha": "21/04/2026",
+    "numeros": "06 12 18 24 29 38",
+    "sueno": "4",
+    "premio": "20.000 €/MES"
+  },
+  "gordo": {
+    "fecha": "20/04/2026",
+    "numeros": "02 10 23 31 45",
+    "clave": "8",
+    "bote": "9 M€"
+  },
+  "quiniela": {
+    "fecha": "20/04/2026",
+    "resultado": "1 X 2 1 X 1 2 X 1 1 X 2 1 X 2 1-0",
+    "bote": "850.000 €"
+  },
+  "quinigol": {
+    "fecha": "20/04/2026",
+    "resultado": "1-0 2-1 0-0 1-1 3-1 2-0",
+    "bote": "180.000 €"
+  },
+  "jueves": {
+    "fecha": "17/04/2026",
+    "primero": "37129",
+    "reintegros": "9 2 7"
+  },
+  "sabado": {
+    "fecha": "19/04/2026",
+    "primero": "51248",
+    "reintegros": "8 4 1"
+  }
 }
