@@ -1,7 +1,7 @@
 name: Actualizar Loterias
 on:
   schedule:
-    - cron: '0 */4 *' # FIX: Cada 4 horas, formato correcto
+    - cron: '0 */4 * * *' # FIX: Cada 4 horas, formato correcto
   workflow_dispatch:
 
 permissions:
