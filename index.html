@@ -3,7 +3,166 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1X2 Loterías</title>
-<link rel="stylesheet" href="style.css">
+<style>
+body{
+  background-color: #0a1f44;
+  color: #111; 
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 15px;
+}
+h1{
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.contenedor{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.tarjeta{
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  padding: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+}
+.cabecera{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.logo{
+  height: 96px;
+  width: auto;
+}
+.logo-nacional{
+  height: 72px;
+}
+.fecha{
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+}
+.contenido{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.resultado{
+  width: 100%;
+  font-weight:900;
+  line-height:1.4;
+  text-align: center;
+}
+.bote{
+  text-align: center;
+  font-size:24px;
+  font-weight:900;
+  color: #0a1f44;
+  background: #fffacd;
+  border: 3px solid #ffd700;
+  border-radius: 10px;
+  padding: 8px 16px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+  margin-top: 8px;
+}
+.bolas-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+.bola{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0a1f44;
+  color: #fff;
+  font-weight: 900;
+  font-size: 17px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.bola.estrella{
+  background: #ffd700;
+  color: #000;
+}
+.info-extra{
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 6px;
+  display: inline-block;
+}
+.numeros{
+  white-space: nowrap;
+  overflow-x: auto;
+  display: block;
+  font-size: 17px;
+  margin-bottom: 6px;
+  text-align: center;
+}
+.contenido-nacional{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.columna-nacional{
+  width: 48%;
+}
+.titulo-nacional{
+  font-size:16px;
+  font-weight:700;
+  margin-bottom: 6px;
+  color: #333;
+}
+.premio-nacional{
+  font-size:26px;
+  font-weight:900;
+  margin-bottom: 4px;
+}
+.reintegro-nacional{
+  font-size:17px;
+  font-weight:700;
+}
+.footer{
+  text-align: center;
+  margin-top: 30px;
+  font-size: 22px;
+  color: #ffd700;
+  font-weight: 900;
+}
+@media screen and (min-width:600px){
+ .contenedor{ grid-template-columns: repeat(2, 1fr); }
+ .bote{ font-size:28px; padding: 10px 20px; }
+ .bola{ width: 44px; height: 44px; font-size: 21px; }
+ .info-extra{ font-size: 19px; }
+ .numeros{ font-size: 19px; }
+ .logo{ height: 120px; }
+ .logo-nacional{ height: 88px; }
+ .footer{ font-size: 24px; }
+}
+@media screen and (min-width:1000px){
+ .contenedor{ grid-template-columns: repeat(3, 1fr); padding: 0 10px; }
+ .bote{ font-size:32px; padding: 12px 24px; }
+ .bola{ width: 50px; height: 50px; font-size: 24px; }
+ .numeros{ font-size: 21px; }
+ .logo{ height: 144px; }
+ .logo-nacional{ height: 104px; }
+ .footer{ font-size: 26px; }
+}
+</style>
 </head><body><h1>ÚLTIMOS RESULTADOS Y BOTES</h1><div class="contenedor" id="contenedor"></div><div class="footer">
 +18 · JUEGA CON RESPONSABILIDAD
 </div><script>
@@ -140,25 +299,4 @@ ${data.quinigol?.resultado || '-'}
 </div>
 <div class="contenido-nacional">
 <div class="columna-nacional">
-<div class="titulo-nacional">JUEVES ${data.jueves?.fecha || '--/--'}</div>
-<div class="premio-nacional">${data.jueves?.primero || '-'}</div>
-<div class="reintegro-nacional">R: ${data.jueves?.reintegros || '-'}</div>
-</div>
-<div class="columna-nacional">
-<div class="titulo-nacional">SÁBADO ${data.sabado?.fecha || '--/--'}</div>
-<div class="premio-nacional">${data.sabado?.primero || '-'}</div>
-<div class="reintegro-nacional">R: ${data.sabado?.reintegros || '-'}</div>
-</div>
-</div>
-</div>
-
-`;
-
-})
-.catch(err => {
-  console.error('Error cargando datos.json:', err);
-  document.getElementById('contenedor').innerHTML = '<h2 style="text-align:center;color:red;margin:40px">Error cargando datos</h2>';
-});
-
-</script></body>
-</html>
+<div class="titulo-nacional">JUEVES ${data.jueves?.fecha || '--/--
